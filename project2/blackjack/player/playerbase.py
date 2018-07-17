@@ -5,7 +5,7 @@ Module docstring
 TODO:
     * Write module docstring
 """
-from hand import Hand
+from .hand import Hand
 
 
 class PlayerBase:

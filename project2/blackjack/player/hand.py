@@ -20,11 +20,26 @@ class Hand:
     def __str__(self):
         result = ''
         for card in self.cards:
-            result += f'{str(card)}\n'
+            if card.face_up:
+                result += f'{str(card)}\n'
+            else:
+                result += 'HIDDEN CARD\n'
         return result
 
     def __len__(self):
         return self.value
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def __next__(self):
+        if self.n < len(self.cards):
+            result = self.cards[self.n]
+            self.n += 1
+            return result
+        else:
+            raise StopIteration
 
     def add_card(self, card):
         # Add card to self.cards
@@ -42,4 +57,14 @@ class Hand:
         self.bust = self.value > 21 and self.soft_value > 21
 
     def clear(self):
-        self.cards.clear()
+        self.__init__()
+
+    def flip_cards(self):
+        for card in self.cards:
+            card.flip()
+
+    def flip_one(self):
+        try:
+            self.cards[0].flip()
+        except IndexError:
+            pass

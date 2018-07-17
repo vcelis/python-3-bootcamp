@@ -6,7 +6,8 @@ TODO:
     * Write module docstring
 """
 import random
-from carddeck.card import Card
+
+from .card import Card
 
 
 class Deck:
@@ -34,9 +35,10 @@ class Deck:
     def populate(self, shuffle=True):
         """Populates a deck of 52 cards"""
         self.cards.clear()
-        for x in range(len(Card.suit_values)):
-            for y in range(1, len(Card.rank_values)):
-                self.cards.append(Card(Card.rank_values[y], Card.suit_values[x]))
+        for suit in range(len(Card.suit_values)):
+            for rank in range(1, len(Card.rank_values)):
+                card = Card(Card.rank_values[rank], Card.suit_values[suit])
+                self.cards.append(card)
         if shuffle:
             self.shuffle()
 

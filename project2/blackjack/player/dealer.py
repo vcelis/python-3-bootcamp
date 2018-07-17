@@ -5,7 +5,7 @@ Module docstring
 TODO:
     * Write module docstring
 """
-from playerbase import PlayerBase
+from .playerbase import PlayerBase
 
 
 class Dealer(PlayerBase):
