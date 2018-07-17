@@ -5,19 +5,17 @@ Module docstring
 TODO:
     * Write module docstring
 """
-from card import Card
 
 
 class Hand:
-    """Class to represent a hand of playing cards
-    """
+    """Class to represent a hand of playing cards"""
 
-    def __init__(self, dealer=False):
-        self.dealer = dealer
+    def __init__(self):
         self.cards = list()
         self.value = 0
         self.soft_value = 0
         self.blackjack = False
+        self.bust = False
 
     def __str__(self):
         result = ''
@@ -40,21 +38,8 @@ class Hand:
             self.soft_value += card.get_value()
         # Check for blackjack and toggle self.blackjack
         self.blackjack = self.value == 21 or self.soft_value == 21
+        # Check for bust and toggle self.bust
+        self.bust = self.value > 21 and self.soft_value > 21
 
     def clear(self):
         self.cards.clear()
-
-
-if __name__ == '__main__':
-    my_hand = Hand()
-    print(my_hand)
-    my_hand.add_card(Card(Card.rank_values[1], Card.suit_values[1]))
-    my_hand.add_card(Card(Card.rank_values[5], Card.suit_values[3]))
-    my_hand.add_card(Card(Card.rank_values[5], Card.suit_values[3]))
-    print(my_hand)
-    print(len(my_hand))
-    print(my_hand.dealer)
-    print(my_hand.value)
-    print(my_hand.soft_value)
-    print(my_hand.blackjack)
-

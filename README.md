@@ -3,4 +3,4 @@
 # Run tests
 In main directory
 
-python -m tests.MYTEST.py
+python -m tests.MYTEST
